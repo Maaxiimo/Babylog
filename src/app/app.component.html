@@ -1,3 +1,56 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="main-content" side="start" menuId="first" class="custom-menu">
+    <ion-header>
+      <ion-toolbar class="header-toolbar">
+        <ion-title>BabyLog</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="true">
+          <!-- Inicio -->
+          <ion-item routerLink="/home" routerDirection="root" routerLinkActive="activated">
+            <ion-icon name="home-outline" slot="start"></ion-icon>
+            <ion-label>Inicio</ion-label>
+          </ion-item>
+
+          <!-- Vacunas -->
+          <ion-item routerLink="/vacunas" routerDirection="root" routerLinkActive="activated">
+            <ion-icon name="medkit-outline" slot="start"></ion-icon>
+            <ion-label>Vacunas</ion-label>
+          </ion-item>
+
+          <!-- Crecimiento -->
+          <ion-item routerLink="/crecimiento" routerDirection="root" routerLinkActive="activated">
+            <ion-icon name="bar-chart-outline" slot="start"></ion-icon>
+            <ion-label>Crecimiento</ion-label>
+          </ion-item>
+
+          <!-- Alimentación -->
+          <ion-item routerLink="/alimentacion" routerDirection="root" routerLinkActive="activated">
+            <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+            <ion-label>Alimentación</ion-label>
+          </ion-item>
+
+          <!-- Baños -->
+          <ion-item routerLink="/banos" routerDirection="root" routerLinkActive="activated">
+            <ion-icon name="water-outline" slot="start"></ion-icon>
+            <ion-label>Baños</ion-label>
+          </ion-item>
+
+          <!-- Controles -->
+          <ion-item routerLink="/controles" routerDirection="root" routerLinkActive="activated">
+            <ion-icon name="pulse-outline" slot="start"></ion-icon>
+            <ion-label>Controles</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- main content -->
+  <div class="ion-page" id="main-content">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
 </ion-app>

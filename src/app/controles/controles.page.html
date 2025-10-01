@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Controles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Formulario -->
+  <ion-item>
+    <ion-label position="floating">Fecha</ion-label>
+    <ion-input type="date" [(ngModel)]="control.fecha"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Doctor</ion-label>
+    <ion-input [(ngModel)]="control.doctor"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Observaciones</ion-label>
+    <ion-input [(ngModel)]="control.observaciones"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="agregarControl()">
+    Agregar Control
+  </ion-button>
+
+  <!-- Lista de controles -->
+  <ion-list>
+    <ion-card *ngFor="let c of controles">
+      <ion-card-content>
+        <p><strong>Fecha:</strong> {{ c.fecha }}</p>
+        <p><strong>Doctor:</strong> {{ c.doctor }}</p>
+        <p><strong>Observaciones:</strong> {{ c.observaciones }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

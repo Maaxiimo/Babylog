@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crecimiento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form>
+    <ion-item>
+      <ion-label position="stacked">Fecha</ion-label>
+      <ion-input type="date" [(ngModel)]="registro.fecha" name="fecha"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Peso (kg)</ion-label>
+      <ion-input type="number" [(ngModel)]="registro.peso" name="peso"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Talla (cm)</ion-label>
+      <ion-input type="number" [(ngModel)]="registro.talla" name="talla"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="guardarRegistro()">
+      Guardar Registro
+    </ion-button>
+  </form>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Registros Guardados</ion-label>
+    </ion-list-header>
+
+    <ion-card *ngFor="let r of registros">
+      <ion-card-header>
+        <ion-card-title>{{ r.fecha }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Peso: {{ r.peso }} kg</p>
+        <p>Talla: {{ r.talla }} cm</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,37 +1,60 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+/* Opcional: importar una Google Font (Poppins). Si no quieres, borra la línea @import) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+:root{
+  --bg-beige: #fff9f5;
+  --pink-light: #ffe0eb;
+  --pink: #d6336c;
+  --pink-active: #f8bbd0;
+  --green: #63d6c1;
+  --text: #333333;
 
-/* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+  /* Tamaños */
+  --menu-width: 260px;
+}
 
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+/* Forzar tema claro (si quieres que ignore dark mode) */
+:root { color-scheme: light; }
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+/* Estilos globales */
+html, body, ion-app, ion-content {
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg-beige);
+  color: var(--text);
+}
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+/* Clases utilitarias */
+.custom-background { --background: var(--bg-beige); }
+.header-toolbar {
+  --background: var(--pink-light);
+  --color: var(--pink);
+  box-shadow: none;
+}
+.logo-text { color: var(--pink); font-weight: 600; font-size: 20px; }
+
+/* Botón custom */
+.custom-btn {
+  --background: var(--green);
+  --color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Card por defecto parecido al mockup */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+.card-title { color: var(--pink); font-weight: 600; margin-bottom: 8px; }
+
+
+:root {
+  --ion-font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--ion-font-family);
+}

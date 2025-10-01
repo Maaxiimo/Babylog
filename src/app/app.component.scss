@@ -1,0 +1,51 @@
+/* Menú - estilo minimalista / mockup */
+ion-menu {
+  --background: #fff9f5; /* beige */
+  width: 260px;
+  border-right: 1px solid rgba(214,51,108,0.06);
+}
+
+.header-toolbar {
+  --background: #ffe0eb;
+  --color: #d6336c;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(214,51,108,0.06);
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #d6336c;
+}
+
+/* Lista limpia */
+ion-list { padding-top: 6px; }
+
+ion-item {
+  --background: transparent;
+  --color: #333;
+  margin: 6px 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: background 160ms ease;
+  --inner-padding-start: 8px;
+}
+
+/* hover / focus */
+ion-item:hover {
+  --background: #fff0f4;
+}
+
+/* clase 'activated' (la añadimos con routerLinkActive="activated") */
+ion-item.activated {
+  --background: #f8bbd0;
+  --color: #d6336c;
+  font-weight: 600;
+}
+
+/* icono */
+ion-icon {
+  font-size: 18px;
+  color: #d6336c;
+  margin-right: 6px;
+}

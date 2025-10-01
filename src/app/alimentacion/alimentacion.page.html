@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Alimentación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Formulario -->
+  <ion-item>
+    <ion-label position="floating">Fecha</ion-label>
+    <ion-input type="date" [(ngModel)]="registro.fecha"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Comida</ion-label>
+    <ion-input [(ngModel)]="registro.comida"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Notas</ion-label>
+    <ion-input [(ngModel)]="registro.notas"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="agregarRegistro()">Agregar</ion-button>
+
+  <!-- Lista de registros -->
+  <ion-list>
+    <ion-card *ngFor="let r of registros">
+      <ion-card-content>
+        <p><strong>Fecha:</strong> {{ r.fecha }}</p>
+        <p><strong>Comida:</strong> {{ r.comida }}</p>
+        <p><strong>Notas:</strong> {{ r.notas }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
