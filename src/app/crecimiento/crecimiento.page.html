@@ -1,44 +1,80 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Crecimiento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleForm()">Añadir registro</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form>
-    <ion-item>
-      <ion-label position="stacked">Fecha</ion-label>
-      <ion-input type="date" [(ngModel)]="registro.fecha" name="fecha"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Peso (kg)</ion-label>
-      <ion-input type="number" [(ngModel)]="registro.peso" name="peso"></ion-input>
-    </ion-item>
+  <!-- ✅ Gráfico con baseChart -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Altura últimos 6 meses</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas baseChart
+              [data]="lineChartData"
+              [options]="lineChartOptions"
+              [type]="lineChartType">
+      </canvas>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-item>
-      <ion-label position="stacked">Talla (cm)</ion-label>
-      <ion-input type="number" [(ngModel)]="registro.talla" name="talla"></ion-input>
-    </ion-item>
+  <!-- ✅ Formulario de registro -->
+  <ion-card *ngIf="mostrarForm">
+    <ion-card-header>
+      <ion-card-title>Nuevo Registro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="agregarRegistro()">
+        <ion-item>
+          <ion-label position="floating">Peso (kg)</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevoRegistro.peso" name="peso"></ion-input>
+        </ion-item>
 
-    <ion-button expand="block" (click)="guardarRegistro()">
-      Guardar Registro
-    </ion-button>
-  </form>
+        <ion-item>
+          <ion-label position="floating">Altura (cm)</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevoRegistro.altura" name="altura"></ion-input>
+        </ion-item>
 
-  <ion-list>
-    <ion-list-header>
-      <ion-label>Registros Guardados</ion-label>
-    </ion-list-header>
+        <ion-button expand="block" type="submit">Guardar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-card *ngFor="let r of registros">
-      <ion-card-header>
-        <ion-card-title>{{ r.fecha }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Peso: {{ r.peso }} kg</p>
-        <p>Talla: {{ r.talla }} cm</p>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+  <!-- ✅ Info del punto seleccionado -->
+  <ion-card *ngIf="registroSeleccionado">
+    <ion-card-header>
+      <ion-card-title>Detalle del registro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Peso:</strong> {{ registroSeleccionado.peso }} kg</p>
+      <p><strong>Altura:</strong> {{ registroSeleccionado.altura }} cm</p>
+      <p><strong>Edad:</strong> {{ registroSeleccionado.mes }} meses</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ✅ Estado de crecimiento -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Estado de Crecimiento</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ estadoCrecimiento }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ✅ Recomendaciones de alimentación -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Recomendaciones de Alimentación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ recomendaciones }}</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

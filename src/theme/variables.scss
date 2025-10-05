@@ -1,2 +1,28 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+:root {
+  /* 🎨 Colores principales */
+  --ion-color-primary: #f8bbd0;   /* Rosa pastel */
+  --ion-color-primary-rgb: 248,187,208;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-shade: #e0a5b9;
+  --ion-color-primary-tint: #f9c4d6;
+
+  --ion-color-secondary: #80cbc4;  /* Verde agua pastel */
+  --ion-color-secondary-rgb: 128,203,196;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #71b3ae;
+  --ion-color-secondary-tint: #8fd2cb;
+
+  /* ⚪ Colores neutros */
+  --ion-color-light: #fff8f0;   /* Fondo beige claro */
+  --ion-color-light-rgb: 255,248,240;
+
+  --ion-color-medium: #9e9e9e;
+  --ion-color-dark: #333;
+
+  /* 🎀 Estilos generales */
+  --ion-background-color: var(--ion-color-light); /* Fondo app */
+  --ion-toolbar-background: #fde4ec;  /* Header rosa claro */
+  --ion-toolbar-color: #d81b60;       /* Texto rosa fuerte */
+}

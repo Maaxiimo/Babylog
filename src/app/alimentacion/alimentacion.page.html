@@ -1,36 +1,104 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Alimentación</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleForm('alimento')">➕ Alimento</ion-button>
+      <ion-button (click)="toggleForm('comida')">➕ Comida</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Formulario -->
-  <ion-item>
-    <ion-label position="floating">Fecha</ion-label>
-    <ion-input type="date" [(ngModel)]="registro.fecha"></ion-input>
-  </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Comida</ion-label>
-    <ion-input [(ngModel)]="registro.comida"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Notas</ion-label>
-    <ion-input [(ngModel)]="registro.notas"></ion-input>
-  </ion-item>
-
-  <ion-button expand="block" (click)="agregarRegistro()">Agregar</ion-button>
-
-  <!-- Lista de registros -->
-  <ion-list>
-    <ion-card *ngFor="let r of registros">
+  <!-- 📌 FORM ALIMENTO -->
+  <div *ngIf="mostrarFormAlimento">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Nuevo Alimento</ion-card-title>
+      </ion-card-header>
       <ion-card-content>
-        <p><strong>Fecha:</strong> {{ r.fecha }}</p>
-        <p><strong>Comida:</strong> {{ r.comida }}</p>
-        <p><strong>Notas:</strong> {{ r.notas }}</p>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="nuevoAlimento.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Calorías</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevoAlimento.calorias"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Proteínas (g)</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevoAlimento.proteinas"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Azúcares (g)</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevoAlimento.azucares"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="agregarAlimento()">Guardar Alimento</ion-button>
       </ion-card-content>
     </ion-card>
-  </ion-list>
+  </div>
+
+  <!-- 📌 FORM COMIDA -->
+  <div *ngIf="mostrarFormComida">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Nueva Comida</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="nuevaComida.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-input [(ngModel)]="nuevaComida.descripcion"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Calorías</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevaComida.calorias"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Proteínas (g)</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevaComida.proteinas"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="agregarComida()">Guardar Comida</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- 📌 LISTADO DE ALIMENTOS -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Alimentos Consumidos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let a of alimentos">
+          <ion-label>
+            <h2>{{ a.nombre }}</h2>
+            <p>Calorías: {{ a.calorias }} | Prot: {{ a.proteinas }}g | Azúcar: {{ a.azucares }}g</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 📌 LISTADO DE COMIDAS -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Comidas Registradas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let c of comidas">
+          <ion-label>
+            <h2>{{ c.nombre }}</h2>
+            <p>{{ c.descripcion }}</p>
+            <p>Calorías: {{ c.calorias }} | Prot: {{ c.proteinas }}g</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

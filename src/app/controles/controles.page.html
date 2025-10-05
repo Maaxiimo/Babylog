@@ -1,40 +1,51 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Controles</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="agregarControl()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        Agregar control
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Buscador -->
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="filtro"
+      placeholder="Buscar controles..."
+      showCancelButton="never">
+    </ion-searchbar>
+  </ion-toolbar>
+
+  <!-- Segmentos -->
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segmento">
+      <ion-segment-button value="realizados">
+        Realizados
+      </ion-segment-button>
+      <ion-segment-button value="proximos">
+        Próximos
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <!-- Formulario -->
-  <ion-item>
-    <ion-label position="floating">Fecha</ion-label>
-    <ion-input type="date" [(ngModel)]="control.fecha"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Doctor</ion-label>
-    <ion-input [(ngModel)]="control.doctor"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Observaciones</ion-label>
-    <ion-input [(ngModel)]="control.observaciones"></ion-input>
-  </ion-item>
-
-  <ion-button expand="block" (click)="agregarControl()">
-    Agregar Control
-  </ion-button>
-
-  <!-- Lista de controles -->
   <ion-list>
-    <ion-card *ngFor="let c of controles">
-      <ion-card-content>
-        <p><strong>Fecha:</strong> {{ c.fecha }}</p>
-        <p><strong>Doctor:</strong> {{ c.doctor }}</p>
-        <p><strong>Observaciones:</strong> {{ c.observaciones }}</p>
-      </ion-card-content>
-    </ion-card>
+    <ion-item
+      *ngFor="let control of controlesFiltrados"
+      button
+      (click)="verControl(control)">
+      <ion-label>
+        <h2>{{ control.nombre }}</h2>
+        <p>📅 {{ control.fecha }} ⏰ {{ control.hora }}</p>
+        <p>👨‍⚕️ {{ control.doctor }} - 🏥 {{ control.lugar }}</p>
+      </ion-label>
+    </ion-item>
   </ion-list>
 
+  <div *ngIf="controlesFiltrados.length === 0" class="ion-text-center ion-padding">
+    <p>No hay controles en esta categoría.</p>
+  </div>
 </ion-content>

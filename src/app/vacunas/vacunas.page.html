@@ -5,40 +5,94 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Formulario -->
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating">Nombre de la vacuna</ion-label>
-      <ion-input [(ngModel)]="vacuna.nombre"></ion-input>
-    </ion-item>
+  <!-- Segmento -->
+  <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="historial">
+      <ion-label>Historial</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="proximas">
+      <ion-label>Próximas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-    <ion-item>
-      <ion-label position="floating">Fecha</ion-label>
-      <ion-input type="date" [(ngModel)]="vacuna.fecha"></ion-input>
-    </ion-item>
+  <!-- Botón agregar y buscador -->
+  <div style="display: flex; align-items: center; margin: 10px 0;">
+    <ion-button expand="block" (click)="mostrarAgregar = true">Agregar vacuna</ion-button>
+    <ion-searchbar [(ngModel)]="buscar" (ionInput)="buscarVacuna()" placeholder="Buscar vacuna"></ion-searchbar>
+  </div>
 
-    <ion-item>
-      <ion-label position="floating">Notas</ion-label>
-      <ion-input [(ngModel)]="vacuna.notas"></ion-input>
-    </ion-item>
+  <!-- Historial -->
+  <div *ngIf="segment === 'historial'">
+    <ion-card *ngFor="let v of vacunasFiltradas">
+      <ion-card-header>
+        <ion-card-title>{{ v.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Fecha: {{ v.fecha }} <br />
+        Dosis: {{ v.dosis }}
+      </ion-card-content>
+    </ion-card>
+  </div>
 
-    <ion-item>
-      <ion-label position="floating">Dosis</ion-label>
-      <ion-input [(ngModel)]="vacuna.dosis"></ion-input>
-    </ion-item>
-  </ion-list>
+  <!-- Próximas vacunas -->
+  <div *ngIf="segment === 'proximas'">
+    <ion-card *ngFor="let v of vacunasProximas" (click)="abrirDetalle(v)">
+      <ion-card-header>
+        <ion-card-title>{{ v.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Fecha programada: {{ v.fecha }} <br />
+        Dosis: {{ v.dosis }}
+      </ion-card-content>
+    </ion-card>
+  </div>
 
-  <ion-button expand="block" (click)="agregarVacuna()">Agregar</ion-button>
+  <!-- Modal para agregar -->
+  <ion-modal [isOpen]="mostrarAgregar" (didDismiss)="mostrarAgregar = false">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Agregar Vacuna</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input [(ngModel)]="vacuna.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Fecha</ion-label>
+          <ion-input type="date" [(ngModel)]="vacuna.fecha"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Dosis</ion-label>
+          <ion-input [(ngModel)]="vacuna.dosis"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Información</ion-label>
+          <ion-input [(ngModel)]="vacuna.info"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="guardarVacuna()">Guardar</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
-  <!-- Lista de vacunas guardadas -->
-  <ion-list *ngIf="vacunas.length > 0">
-    <ion-item *ngFor="let v of vacunas">
-      <ion-label>
-        <h2>{{ v.nombre }}</h2>
-        <p><strong>Fecha:</strong> {{ v.fecha }}</p>
-        <p><strong>Notas:</strong> {{ v.notas }}</p>
-        <p><strong>Dosis:</strong> {{ v.dosis }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <!-- Modal para detalle -->
+  <ion-modal [isOpen]="mostrarDetalle" (didDismiss)="mostrarDetalle = false">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Detalle Vacuna</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h2>{{ vacunaSeleccionada?.nombre }}</h2>
+        <p>Fecha: {{ vacunaSeleccionada?.fecha }}</p>
+        <p>Dosis: {{ vacunaSeleccionada?.dosis }}</p>
+        <p>Info: {{ vacunaSeleccionada?.info }}</p>
+        <ion-button color="danger" expand="block" (click)="eliminarVacuna(vacunaSeleccionada)">Eliminar</ion-button>
+        <ion-button color="warning" expand="block" (click)="editarVacuna()">Editar</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

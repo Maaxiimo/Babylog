@@ -58,3 +58,90 @@ html, body, ion-app, ion-content {
 body {
   font-family: var(--ion-font-family);
 }
+
+/* 🎨 Estilos globales BabyLog */
+
+/* ===============================
+   ESTILO DE CARDS
+================================= */
+ion-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 12px;
+  padding: 8px;
+  background: #ffffff;
+}
+
+ion-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e91e63; /* Rosa fuerte */
+  margin-bottom: 6px;
+}
+
+ion-card-content {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* ===============================
+   BOTONES
+================================= */
+ion-button {
+  --border-radius: 12px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+ion-button[color="secondary"] {
+  --background: var(--ion-color-secondary);
+  --background-hover: #72bdb7;
+  --color: #fff;
+}
+
+/* ===============================
+   MENÚ LATERAL
+================================= */
+ion-menu {
+  --background: #fff8f0; /* Beige claro */
+}
+
+ion-menu ion-item {
+  --border-radius: 8px;
+  margin: 4px 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+ion-menu ion-item.activated {
+  --background: #f8bbd0; /* Rosa pastel */
+  color: #000;
+  font-weight: 600;
+}
+
+ion-menu ion-icon {
+  color: #555;
+}
+
+/* ===============================
+   TOOLBAR / HEADER
+================================= */
+ion-toolbar {
+  --background: #fde4ec; /* Rosa muy claro */
+  --color: #d81b60;      /* Rosa fuerte */
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+ion-title {
+  font-weight: bold;
+}
+
+/* ===============================
+   CONTENIDO GENERAL
+================================= */
+ion-content {
+  --background: var(--ion-color-light);
+}

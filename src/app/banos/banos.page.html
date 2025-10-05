@@ -1,36 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Baños</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="agregarBano()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        Agregar baño
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Formulario -->
-  <ion-item>
-    <ion-label position="floating">Fecha</ion-label>
-    <ion-input type="date" [(ngModel)]="registro.fecha"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Hora</ion-label>
-    <ion-input type="time" [(ngModel)]="registro.hora"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Notas</ion-label>
-    <ion-input [(ngModel)]="registro.notas"></ion-input>
-  </ion-item>
-
-  <ion-button expand="block" (click)="agregarRegistro()">Agregar</ion-button>
-
-  <!-- Lista de registros -->
   <ion-list>
-    <ion-card *ngFor="let r of registros">
-      <ion-card-content>
-        <p><strong>Fecha:</strong> {{ r.fecha }}</p>
-        <p><strong>Hora:</strong> {{ r.hora }}</p>
-        <p><strong>Notas:</strong> {{ r.notas }}</p>
-      </ion-card-content>
-    </ion-card>
+    <ion-item
+      button
+      *ngFor="let bano of banos"
+      (click)="verBano(bano)">
+      <ion-label>
+        <h2>📅 {{ bano.dia }}</h2>
+        <p>⏰ {{ bano.hora }}</p>
+      </ion-label>
+    </ion-item>
   </ion-list>
+
+  <div *ngIf="banos.length === 0" class="ion-text-center ion-padding">
+    <p>No hay baños programados aún</p>
+  </div>
 </ion-content>
