@@ -1,0 +1,40 @@
+<ion-content class="login-page">
+  <div class="logo-container">
+    <img src="assets/Babylog.png" alt="BabyLog Logo" class="logo" />
+    <h1>BabyLog</h1>
+    <p>Control del crecimiento y desarrollo de tu bebé</p>
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input type="email" 
+        placeholder="Correo electrónico" 
+        [(ngModel)]="email"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Contraseña"
+          [(ngModel)]="password"
+        ></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" (click)="login()">
+        Iniciar sesión
+      </ion-button>
+
+      <div class="links">
+        <a (click)="goToForgotPassword()">¿Olvidaste tu contraseña?</a>
+        </div>
+
+      <div class="links">
+       <a (click)="goToRegister()">Crear cuenta</a>
+      </div>
+
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
