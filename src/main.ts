@@ -1,18 +1,26 @@
+// src/main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { importProvidersFrom } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { provideIonicAngular } from '@ionic/angular/standalone';
-import { CommonModule } from '@angular/common';
-import { NgChartsModule } from 'ng2-charts';   // ✅ usar módulo en lugar de provideCharts
-
 import { routes } from './app/app.routes';
+import { provideIonicAngular } from '@ionic/angular/standalone';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app/app.component';
+
+// 🧩 Firebase
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { environment } from './environments/environment';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideIonicAngular(),
     provideRouter(routes),
-    importProvidersFrom(FormsModule, CommonModule, NgChartsModule) // ✅ aquí metemos NgChartsModule
+    provideAnimations(),
+
+    // 🔥 Inicializa Firebase con las credenciales de tu proyecto
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+
+    // 👤 Habilita autenticación
+    provideAuth(() => getAuth()),
   ],
-});
+}).catch(err => console.error(err));
