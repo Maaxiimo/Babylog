@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavController, ToastController } from '@ionic/angular';
 
-// Ionic standalone components
+
 import {
   IonContent,
   IonCard,
@@ -40,7 +40,6 @@ export class ForgotPasswordPage {
       return;
     }
 
-    // Simulación de recuperación
     this.showToast('Se ha enviado un enlace de recuperación a tu correo', 'success');
     this.navCtrl.navigateBack('/login');
   }

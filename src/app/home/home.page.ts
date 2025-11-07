@@ -1,49 +1,25 @@
 import { Component } from '@angular/core';
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButtons,
-  IonMenuButton,
-  IonMenu,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonIcon,
-  IonMenuToggle,
-  IonButton
-} from '@ionic/angular/standalone';
-import { AuthService } from '../services/auth.service';
-import { NavController, IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  standalone: true,
-  imports: [
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonButtons,
-    IonButton,
-    IonicModule,
-    IonList
-],
+  imports: [CommonModule, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonGrid, IonRow, IonCol],
 })
 export class HomePage {
-  userEmail: string | null = null;
+  babyName = 'Martina';
 
-  constructor(private auth: AuthService, private navCtrl: NavController) {}
+  constructor(private router: Router) {}
 
-  ionViewWillEnter() {
-    // Mostrar el correo del usuario autenticado
-    this.userEmail = this.auth.user?.email ?? null;
+  goToVacunas() {
+    this.router.navigateByUrl('/vacunas');
   }
 
-  async logout() {
-    await this.auth.logout();
-    this.navCtrl.navigateRoot('/login');
+  goToControles() {
+    this.router.navigateByUrl('/controles');
   }
 }

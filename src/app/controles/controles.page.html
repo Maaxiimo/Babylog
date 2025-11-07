@@ -1,51 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Controles</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="agregarControl()">
-        <ion-icon name="add-circle-outline"></ion-icon>
-        Agregar control
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-
-  <!-- Buscador -->
-  <ion-toolbar>
-    <ion-searchbar
-      [(ngModel)]="filtro"
-      placeholder="Buscar controles..."
-      showCancelButton="never">
-    </ion-searchbar>
-  </ion-toolbar>
-
-  <!-- Segmentos -->
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="segmento">
-      <ion-segment-button value="realizados">
-        Realizados
-      </ion-segment-button>
-      <ion-segment-button value="proximos">
-        Próximos
-      </ion-segment-button>
-    </ion-segment>
+<ion-header translucent="true">
+  <ion-toolbar color="light">
+    <ion-title>📋 Controles Médicos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list>
-    <ion-item
-      *ngFor="let control of controlesFiltrados"
-      button
-      (click)="verControl(control)">
-      <ion-label>
-        <h2>{{ control.nombre }}</h2>
-        <p>📅 {{ control.fecha }} ⏰ {{ control.hora }}</p>
-        <p>👨‍⚕️ {{ control.doctor }} - 🏥 {{ control.lugar }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content class="controles-bg" fullscreen>
+  <div class="container">
+    <ion-card class="proximo-control">
+      <ion-card-header>
+        <ion-card-title>🩺 Próximo Control</ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngFor="let c of proximos">
+        <p><strong>Fecha:</strong> {{ c.fecha }}</p>
+        <p><strong>Tipo:</strong> {{ c.tipo }}</p>
+        <p><strong>Lugar:</strong> {{ c.lugar }}</p>
+        <ion-badge color="warning">{{ c.estado }}</ion-badge>
+      </ion-card-content>
+    </ion-card>
 
-  <div *ngIf="controlesFiltrados.length === 0" class="ion-text-center ion-padding">
-    <p>No hay controles en esta categoría.</p>
+    <ion-card class="historial">
+      <ion-card-header>
+        <ion-card-title>📆 Controles Anteriores</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let h of anteriores">
+            <ion-label>
+              <h2>{{ h.fecha }}</h2>
+              <p><strong>{{ h.tipo }}</strong></p>
+              <p>{{ h.observaciones }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

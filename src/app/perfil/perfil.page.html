@@ -1,0 +1,44 @@
+<ion-header translucent="true">
+  <ion-toolbar color="light">
+    <ion-title>👶 Perfil del Bebé</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="perfil-bg" fullscreen>
+  <div class="perfil-header">
+    <img [src]="baby.imagen" alt="" class="perfil-foto" />
+    <div class="perfil-nombre">
+      <h2>{{ baby.nombre }}</h2>
+      <p>Edad: {{ baby.edad }}</p>
+      <p>Peso: {{ baby.peso }}</p>
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card class="perfil-card banos">
+          <ion-card-header>
+            <ion-card-title>🛁 Baños</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Último baño: 23 Oct</p>
+            <p>Frecuencia: Diario</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card class="perfil-card alimentacion">
+          <ion-card-header>
+            <ion-card-title>🍎 Alimentación</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Última comida: 14:30</p>
+            <p>Tipo: Papilla de frutas</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
