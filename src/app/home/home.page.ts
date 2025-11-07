@@ -27,9 +27,9 @@ import { NavController, IonicModule } from '@ionic/angular';
     IonToolbar,
     IonTitle,
     IonButtons,
-    IonMenuButton,
     IonButton,
-    IonicModule
+    IonicModule,
+    IonList
 ],
 })
 export class HomePage {

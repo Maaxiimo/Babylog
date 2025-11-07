@@ -29,24 +29,8 @@ import {
   imports: [
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonButton,
-    IonList,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
-    IonSearchbar,
-    IonSegment,
-    IonSegmentButton,
-    IonModal
-  ],
+ 
+],
 })
 export class VacunasPage {
   segment: string = 'historial';
